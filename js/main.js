@@ -69,7 +69,13 @@ const estufas = [
     {id:4, nombre: "estufa grande con horno", calorias: 9500, precio: 60000},
 ]
 
-console.log(estufas)
+const producto = estufas.find(estufa => estufa.id == ingreso);
+
+console.log(producto)
+
+
+
+
 
  
 
