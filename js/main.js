@@ -3,7 +3,7 @@
 
 let precio = 0
 
-function opcionPago(modo){
+function opcionPago(){
 
     if ((modoPago == "efectivo") || (modoPago == "EFECTIVO")){
         alert("El precio no tiene interés");
@@ -49,7 +49,7 @@ let modoPago = prompt("Ingrese tarjeta o efectivo");
 
 let cantidad = parseInt(prompt("Ingrese Cantidad"))
 
-function descuento(valor){
+function descuento(){
     if(cantidad == 1){
         alert("No aplica descuento")
     } else if((cantidad > 1) && (cantidad <=3)){
@@ -62,7 +62,14 @@ function descuento(valor){
 descuento(precio);
 
 
+const estufas = [
+    {id:1, nombre: "estufa eco", calorias: 7500, precio: 29000},
+    {id:2, nombre: "estufa eco con visor", calorias: 7500, precio: 35000},
+    {id:3, nombre: "estufa mediana", calorias: 9500, precio: 43000},
+    {id:4, nombre: "estufa grande con horno", calorias: 9500, precio: 60000},
+]
 
+console.log(estufas)
 
  
 
