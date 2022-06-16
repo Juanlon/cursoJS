@@ -20,6 +20,7 @@ function calcularInteres(valor){
 }
 
 let ingreso = prompt("Seleccionar el número de modelo de estufa en stock");
+
 let modoPago = prompt("Ingrese tarjeta o efectivo");
     switch (ingreso) {
         case "1":
@@ -69,13 +70,13 @@ const estufas = [
     {id:4, nombre: "estufa grande con horno", calorias: 9500, precio: 60000},
 ]
 
-const producto = estufas.find(estufa => estufa.id == ingreso);
+const producto = estufas.find(estufa => {
+    return estufa.id == ingreso});
 
-console.log(producto)
+let carrito = []
 
+carrito.push(producto);
 
+console.log(carrito);
 
-
-
- 
 
