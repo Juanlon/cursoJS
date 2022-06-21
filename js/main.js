@@ -1,6 +1,7 @@
 
 //SIMULADOR INTERACTIVO
 
+
 let precio = 0
 
 function opcionPago(){
@@ -69,6 +70,15 @@ const estufas = [
     {id:3, nombre: "estufa mediana", calorias: 9500, precio: 43000},
     {id:4, nombre: "estufa grande con horno", calorias: 9500, precio: 60000},
 ]
+
+for (const estufa of estufas) {
+    let contenedor = document.createElement("div");
+    contenedor.innerHTML = `<h3> ID: ${estufa.id} </h3> 
+                           <p> Producto: ${estufa.nombre} </p>
+                           <p> Calorías: ${estufa.calorias} </p>
+                           <b> Precio: $ ${estufa.precio} </b>`;
+    document.body.appendChild(contenedor);
+}
 
 const producto = estufas.find(estufa => {
     return estufa.id == ingreso});
