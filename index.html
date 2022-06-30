@@ -5,16 +5,24 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/style.css">
     <script src="https://kit.fontawesome.com/faf3962f4c.js" crossorigin="anonymous"></script>    
     <title>Estufas Teybo</title>
 </head>
-<body class="container">
-    <header class="row">
-        <div class="col 12">
+<body class="containerBody">
+    <header class="header">
+        <div class="logo">
             <img src="media/logo.jpg" alt="logo">    
-        </div>           
+        </div>
+        <div class="seleccion">
+            <select id="selectCalorias">
+                <option value="todas">Todas</option>
+                <option value="7500">7500 Calorías</option>
+                <option value="9500">9500 Calorías</option>
+            </select>
+        </div>      
     </header>
-    <main class="row">
+    <main class="containerMain">
         <h1>ESTUFAS A LEÑA DOBLE COMBUSTIÓN</h1>
         <section id="contenedorCarrito"></section>
         <div id="contenedorProducto"></div>     

@@ -1,0 +1,45 @@
+* {
+    margin: 0;
+    padding: 0;
+    background-color: rgb(255, 255, 255);
+}
+
+.logo img {
+    width: 200px;
+    display: block;
+}
+
+select {
+    width: 200px;
+    text-align: right;
+}
+
+.seleccion {
+    margin-top: 150px;
+    text-align: right; 
+    display: block;
+}
+
+.header {
+    margin: 10px;
+    display: flex;
+    justify-content: space-between;
+}
+
+#contenedorProducto {
+    margin: 10px;
+    display: flex;
+    flex-direction: row;
+    flex-flow: wrap;
+    justify-content: space-around;
+}
+
+.card {
+    width: 250px;
+    height: 500px;
+}
+
+h1 {
+    text-align: center;
+    padding: 10px;
+}
