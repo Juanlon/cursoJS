@@ -1,10 +1,10 @@
 
 
 let carritoDeCompras = []
-const contenedorProducto = document.getElementById("contenedorProducto")
-const contenedorCarrito = document.getElementById("contenedorCarrito")
-const selectCalorias = document.getElementById("selectCalorias")
-
+const contenedorProducto = document.querySelector(".contenedorProducto")
+const contenedorCarrito = document.querySelector(".contenedorCarrito")
+const selectCalorias = document.querySelector(".selectCalorias")
+const volver =  document.getElementById("volver")
 
 const estufas = [
     {id:1, nombre: "estufa eco", calorias: 7500, precio: 29000, img: "media/img1.jpg"},
@@ -24,7 +24,7 @@ for (const estufa of lista) {
                                     <h3> Producto: ${estufa.nombre.toUpperCase()} </h3>
                                     <p> Calorías: ${estufa.calorias} </p>
                                     <b> Precio: $ ${estufa.precio} </b>
-                                    <button id= "boton${estufa.id}"><i class="fa-solid fa-cart-shopping"></i></button>
+                                    <a href="html/carrito.html"><button id= "boton${estufa.id}"><i class="fa-solid fa-cart-shopping"></i></button></a>
                                 </div>
                             </div>`;
     contenedorProducto.appendChild(contenedor);
@@ -59,7 +59,7 @@ selectCalorias.addEventListener("change", () => {
 
 function agregarAlCarrito(id){
     let producto = estufas.find(estufas => estufas.id === id)
-    carritoDeCompras.push(producto);    
+    carritoDeCompras.push(producto);   
     mostrarCarrito(producto);
 }
 
@@ -71,7 +71,7 @@ function mostrarCarrito(producto){
                                 <h3> Producto: ${producto.nombre.toUpperCase()} </h3>
                                 <p> Calorías: ${producto.calorias} </p>
                                 <b> Precio: $ ${producto.precio} </b>
-                                <button id= "boton${producto.id}"><i class="fa-solid fa-cart-shopping"></i></button>
+                                <a href="https://www.facebook.com/marketplace/item/437276831497443/"><button id= "boton${producto.id}"><i class="fa-solid fa-cart-shopping"></i></button></a>
                             </div>
                         </div>`
     contenedorCarrito.appendChild(carrito);
@@ -87,6 +87,11 @@ for (const estufa of estufas){
     guardarProductos("listado", JSON.stringify(estufas))
 }
 
-let arrayGuardado = JSON.parse(localStorage.getItem("listado"))
+const arrayGuardado = JSON.parse(localStorage.getItem("listado"))
 
 console.log(arrayGuardado)
+
+volver.addEventListener("click",()=>{
+    mostrarProducto(estufas);
+    limpiarLista();
+})

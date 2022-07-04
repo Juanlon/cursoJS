@@ -26,8 +26,9 @@ select {
     justify-content: space-between;
 }
 
-#contenedorProducto {
+.contenedorProducto {
     margin: 10px;
+    padding: 10px;
     display: flex;
     flex-direction: row;
     flex-flow: wrap;
@@ -36,10 +37,28 @@ select {
 
 .card {
     width: 250px;
-    height: 500px;
+    height: 550px;
+    margin: 5px;
 }
 
 h1 {
     text-align: center;
     padding: 10px;
+}
+
+.contenedorCarrito {
+    margin: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+footer button {
+    margin: 20px;
+    width: 50px;
+    height: 50px;
+}
+
+footer {
+    display: block;
+    text-align: center;   
 }
