@@ -49,7 +49,13 @@ h1 {
 .contenedorCarrito {
     margin: 10px;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    justify-content: center;
+}
+
+#cardCarrito {
+    width: 600px;
+    height: 200px;
 }
 
 footer button {
@@ -62,3 +68,4 @@ footer {
     display: block;
     text-align: center;   
 }
+

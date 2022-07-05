@@ -13,26 +13,30 @@ const estufas = [
     {id:4, nombre: "estufa grande con horno", calorias: 9500, precio: 60000, img: "media/img4.jpg"},
 ]
 
+let {id, nombre, calorias, precio, img} = estufas
+
 function mostrarProducto(lista){
 
 
 for (const estufa of lista) {
+    let {id, nombre, calorias, precio, img} = estufa
+
     let contenedor = document.createElement("div");
     contenedor.innerHTML = `<div class="card" style="width: 18rem;">
-                                <img src="${estufa.img}" class="card-img-top" alt="...">
+                                <img src="${img}" class="card-img-top" alt="...">
                                 <div class="card-body"> 
-                                    <h3> Producto: ${estufa.nombre.toUpperCase()} </h3>
-                                    <p> Calorías: ${estufa.calorias} </p>
-                                    <b> Precio: $ ${estufa.precio} </b>
-                                    <a href="html/carrito.html"><button id= "boton${estufa.id}"><i class="fa-solid fa-cart-shopping"></i></button></a>
+                                    <h3> Producto: ${nombre.toUpperCase()} </h3>
+                                    <p> Calorías: ${calorias} </p>
+                                    <b> Precio: $ ${precio} </b>
+                                    <button id= "boton${id}"><i class="fa-solid fa-cart-shopping"></i></button>
                                 </div>
                             </div>`;
     contenedorProducto.appendChild(contenedor);
 
-    let botonAgregar = document.getElementById(`boton${estufa.id}`)
+    let botonAgregar = document.getElementById(`boton${id}`)
         
     botonAgregar.addEventListener("click",()=>{
-        agregarAlCarrito(estufa.id);
+        agregarAlCarrito(id);
         limpiarLista();
     })
 
@@ -59,9 +63,12 @@ selectCalorias.addEventListener("change", () => {
 
 function agregarAlCarrito(id){
     let producto = estufas.find(estufas => estufas.id === id)
-    carritoDeCompras.push(producto);   
+    carritoDeCompras.push(producto);
+    const guardarProducto = JSON.stringify(producto);   
     mostrarCarrito(producto);
+    localStorage.setItem("producto", guardarProducto)    
 }
+
 
 function mostrarCarrito(producto){
     let carrito = document.createElement("div");
@@ -71,7 +78,7 @@ function mostrarCarrito(producto){
                                 <h3> Producto: ${producto.nombre.toUpperCase()} </h3>
                                 <p> Calorías: ${producto.calorias} </p>
                                 <b> Precio: $ ${producto.precio} </b>
-                                <a href="https://www.facebook.com/marketplace/item/437276831497443/"><button id= "boton${producto.id}"><i class="fa-solid fa-cart-shopping"></i></button></a>
+                                <a href="html/carrito.html"><button id= "boton${producto.id}"><i class="fa-solid fa-cart-shopping"></i></button></a>
                             </div>
                         </div>`
     contenedorCarrito.appendChild(carrito);
@@ -80,18 +87,3 @@ function mostrarCarrito(producto){
 function limpiarLista() {
     contenedorProducto.innerHTML = "";
 }
-
-
-const guardarProductos = (clave, valor) => {localStorage.setItem(clave, valor)}
-for (const estufa of estufas){
-    guardarProductos("listado", JSON.stringify(estufas))
-}
-
-const arrayGuardado = JSON.parse(localStorage.getItem("listado"))
-
-console.log(arrayGuardado)
-
-volver.addEventListener("click",()=>{
-    mostrarProducto(estufas);
-    limpiarLista();
-})
