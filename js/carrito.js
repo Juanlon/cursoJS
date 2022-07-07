@@ -2,6 +2,7 @@
 let carritoDeCompras = []
 const contenedorProducto = document.querySelector(".contenedorProducto")
 const contenedorCarrito = document.querySelector(".contenedorCarrito")
+const contenedorSeleccion = document.querySelector(".contenedorSeleccion")
 const selectCalorias = document.querySelector(".selectCalorias")
 const volver =  document.getElementById("volver")
 
@@ -27,12 +28,24 @@ function mostrarCarrito(productoCarrito){
                                 <h3> Producto: ${nombre.toUpperCase()} </h3>
                                 <p> Calorías: ${calorias} </p>
                                 <b> Precio: $ ${precio} </b>
-                                <a href="https://www.facebook.com/marketplace/item/437276831497443/"><button id= "boton${id}"><i class="fa-solid fa-cart-shopping"></i></button></a>
+                                <a class="botonComprar" href="https://www.facebook.com/marketplace/item/437276831497443/"><button id= "boton${id}"><i class="fa-solid fa-cart-shopping"></i></button></a>
                             </div>
                         </div>`
                         
     contenedorCarrito.appendChild(carrito);
 }
 mostrarCarrito(productoCarrito)
+
+let botonComprar = document.querySelector(".botonComprar")
+        
+    botonComprar.addEventListener("click",()=>{
+        Swal.fire({
+            position: 'top-end',
+            icon: 'success',
+            title: 'Redireccionado a Marketplace',
+            showConfirmButton: false,
+            timer: 1500
+            })
+    })
 
 

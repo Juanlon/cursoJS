@@ -3,6 +3,7 @@
 let carritoDeCompras = []
 const contenedorProducto = document.querySelector(".contenedorProducto")
 const contenedorCarrito = document.querySelector(".contenedorCarrito")
+const contenedorSeleccion = document.querySelector(".contenedorSeleccion")
 const selectCalorias = document.querySelector(".selectCalorias")
 const volver =  document.getElementById("volver")
 
@@ -37,6 +38,13 @@ for (const estufa of lista) {
         
     botonAgregar.addEventListener("click",()=>{
         agregarAlCarrito(id);
+        Swal.fire({
+            position: 'top-end',
+            icon: 'success',
+            title: 'Seleccionaste el producto',
+            showConfirmButton: false,
+            timer: 1500
+          })
         limpiarLista();
     })
 
@@ -44,7 +52,6 @@ for (const estufa of lista) {
 }
 
 mostrarProducto(estufas);
-
 
 
 selectCalorias.addEventListener("change", () => {
@@ -72,8 +79,7 @@ function agregarAlCarrito(id){
 
 function mostrarCarrito(producto){
     let carrito = document.createElement("div");
-    carrito.innerHTML = `<div class="card" style="width: 18rem;">
-                            <img src="${producto.img}" class="card-img-top" alt="...">
+    carrito.innerHTML = `<div class="card" id= "cardCarrito" style="width: 18rem;">
                             <div class="card-body"> 
                                 <h3> Producto: ${producto.nombre.toUpperCase()} </h3>
                                 <p> Calorías: ${producto.calorias} </p>
@@ -81,9 +87,12 @@ function mostrarCarrito(producto){
                                 <a href="html/carrito.html"><button id= "boton${producto.id}"><i class="fa-solid fa-cart-shopping"></i></button></a>
                             </div>
                         </div>`
-    contenedorCarrito.appendChild(carrito);
+    contenedorSeleccion.appendChild(carrito);
 }
+
 
 function limpiarLista() {
     contenedorProducto.innerHTML = "";
 }
+
+

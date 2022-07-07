@@ -68,4 +68,12 @@ footer {
     display: block;
     text-align: center;   
 }
+/*
+.contenedorSeleccion {
+    display:flex;
+    flex-direction: column;
+    width: 800px;
+    height: 600px;
+}
+*/
 
