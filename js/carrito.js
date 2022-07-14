@@ -6,13 +6,6 @@ const contenedorSeleccion = document.querySelector(".contenedorSeleccion")
 const selectCalorias = document.querySelector(".selectCalorias")
 const volver =  document.getElementById("volver")
 
-const estufas = [
-    {id:1, nombre: "estufa eco", calorias: 7500, precio: 29000, img: "../media/img1.jpg"},
-    {id:2, nombre: "estufa eco con visor", calorias: 7500, precio: 35000, img: "../media/img2.jpg"},
-    {id:3, nombre: "estufa mediana", calorias: 9500, precio: 43000, img: "../media/img3.jpg"},
-    {id:4, nombre: "estufa grande con horno", calorias: 9500, precio: 60000, img: "../media/img4.jpg"},
-]
-
 
 const productoCarrito = JSON.parse(localStorage.getItem("producto"))
 
@@ -42,7 +35,7 @@ let botonComprar = document.querySelector(".botonComprar")
         Swal.fire({
             position: 'top-end',
             icon: 'success',
-            title: 'Redireccionado a Marketplace',
+            title: 'Tu compra se completa en Marketplace',
             showConfirmButton: false,
             timer: 1500
             })

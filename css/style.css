@@ -26,24 +26,21 @@ select {
     justify-content: space-between;
 }
 
-.contenedorProducto {
+#productos {
     margin: 10px;
     padding: 10px;
     display: flex;
     flex-direction: row;
     flex-flow: wrap;
     justify-content: space-around;
+    background-color: rgb(230, 226, 208);
 }
 
-.card {
-    width: 250px;
-    height: 550px;
-    margin: 5px;
-}
 
 h1 {
     text-align: center;
     padding: 10px;
+    background-color: rgb(190, 0, 0); 
 }
 
 .contenedorCarrito {
@@ -58,6 +55,7 @@ h1 {
     height: 200px;
 }
 
+
 footer button {
     margin: 20px;
     width: 50px;
@@ -66,14 +64,34 @@ footer button {
 
 footer {
     display: block;
-    text-align: center;   
+    text-align: center;
+    background-color: rgb(167, 39, 0);  
 }
-/*
-.contenedorSeleccion {
-    display:flex;
-    flex-direction: column;
-    width: 800px;
-    height: 600px;
-}
-*/
 
+.contenedorSeleccion a {
+    display: block;
+    text-align: center;
+}
+
+.precioProducto {
+    display: block;
+    text-align: center;
+}
+
+#botonCarrito {
+    width: 80px;
+    height: 80px;
+    font-size: 30px;
+    border: none;
+}
+
+.contenedorSeleccion {
+    margin: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+.card {
+    width: 250px;
+    height: 550px;  
+}
