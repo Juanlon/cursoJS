@@ -1,105 +1,74 @@
 
-/*
 let carritoDeCompras = []
-const contenedorProducto = document.querySelector(".contenedorProducto")
-const contenedorCarrito = document.querySelector(".contenedorCarrito")
+const listaProductos = document.querySelector("#productos");
 const contenedorSeleccion = document.querySelector(".contenedorSeleccion")
-const selectCalorias = document.querySelector(".selectCalorias")
-const volver =  document.getElementById("volver")
+const contadorCarrito = document.querySelector("#contadorCarrito")
+const precioTotal = document.querySelector("#precioTotal")
+const botonCarrito = document.querySelector("#botonCarrito")
+const contenedorCarrito = document.querySelector(".contenedorCarrito")
+const contenedorProducto = document.querySelector(".contenedorProducto")
+const finalizarCompra = document.querySelector(".finalizarCompra")
+const botonCompra = document.querySelector("#botonCompra")
 
-const estufas = [
-    {id:1, nombre: "estufa eco", calorias: 7500, precio: 29000, img: "media/img1.jpg"},
-    {id:2, nombre: "estufa eco con visor", calorias: 7500, precio: 35000, img: "media/img2.jpg"},
-    {id:3, nombre: "estufa mediana", calorias: 9500, precio: 43000, img: "media/img3.jpg"},
-    {id:4, nombre: "estufa grande con horno", calorias: 9500, precio: 60000, img: "media/img4.jpg"},
-]
-
-let {id, nombre, calorias, precio, img} = estufas
-
-const listaPost = document.querySelector("#post");
 
 const url = "js/estufas.json"; 
 
-fetch(url)
-    .then((response) => response.json())
-    .then((post)=>{
-        post.forEach((estufas)=>{
-            console.log(estufas);
-            const li = document.createElement("li");
-            const {id, nombre, calorias, precio, img} = estufas;
-            li.innerHTML = `<div class="card" style="width: 18rem;">
-                                <img src="${img}" class="card-img-top" alt="...">
-                                <div class="card-body"> 
-                                    <h3> Producto: ${nombre.toUpperCase()} </h3>
-                                    <p> Calorías: ${calorias} </p>
-                                    <b> Precio: $ ${precio} </b>
-                                    <button id= "boton${id}"><i class="fa-solid fa-cart-shopping"></i></button>
-                                </div>
-                            </div>`;
-                            listaPost.append(li);
-        });
-    });
-/*
-function mostrarProducto(lista){
+const pedirProductos = async ()=>{
+    const respuesta = await fetch(url)
+    return respuesta.json()
+}
 
-
-for (const estufa of lista) {
-    let {id, nombre, calorias, precio, img} = estufa
-
-    let contenedor = document.createElement("div");
-    contenedor.innerHTML = `<div class="card" style="width: 18rem;">
-                                <img src="${img}" class="card-img-top" alt="...">
-                                <div class="card-body"> 
-                                    <h3> Producto: ${nombre.toUpperCase()} </h3>
-                                    <p> Calorías: ${calorias} </p>
-                                    <b> Precio: $ ${precio} </b>
-                                    <button id= "boton${id}"><i class="fa-solid fa-cart-shopping"></i></button>
-                                </div>
-                            </div>`;
-    contenedorProducto.appendChild(contenedor);
-
-    let botonAgregar = document.getElementById(`boton${id}`)
+const renderizarDom = async() => {
+    let estufas = await pedirProductos()
+    estufas.forEach(estufa => {
+        const div = document.createElement("div");
+        const {id, nombre, calorias, precio, img} = estufa;
+        div.innerHTML = `<div class="card" style="width: 18rem;">
+                          <img src="${img}" class="card-img-top" alt="...">
+                          <div class="card-body"> 
+                              <h3> Producto: ${nombre.toUpperCase()} </h3>
+                              <p> Calorías: ${calorias} </p>
+                              <b> Precio: $ ${precio} </b>
+                              <button class="botonSeleccion" id= "boton${id}"><i class="fa-solid fa-cart-shopping"></i></button>
+                          </div>
+                      </div>`;
         
-    botonAgregar.addEventListener("click",()=>{
-        agregarAlCarrito(id);
-        Swal.fire({
-            position: 'top-end',
-            icon: 'success',
-            title: 'Seleccionaste el producto',
-            showConfirmButton: false,
-            timer: 1500
-          })
-        limpiarLista();
-    })
+        listaProductos.append(div);
 
-}
-}
+        let botonAgregar = document.getElementById(`boton${id}`)
+        
+        botonAgregar.addEventListener('click',()=>{
+            agregarAlCarrito(id);
+            Swal.fire({
+                position: 'top-end',
+                icon: 'success',
+                title: 'Seleccionaste el producto',
+                showConfirmButton: false,
+                timer: 1500
+              })
+        })
+    
+        });
+        function agregarAlCarrito(id){
+            let yaExiste = carritoDeCompras.find(elemento => elemento.id == id)
 
-mostrarProducto(estufas);
-
-
-selectCalorias.addEventListener("change", () => {
-    limpiarLista();
-    if(selectCalorias.value == "todas"){
-        mostrarProducto(estufas);
-    }else if (selectCalorias.value === "7500"){
-        let filtroCalorias = estufas.filter(estufa => estufa.calorias === 7500);
-        mostrarProducto(filtroCalorias);
-    }else {
-        let filtroCalorias2 = estufas.filter(estufa => estufa.calorias === 9500)
-        mostrarProducto(filtroCalorias2)
-    }
-})
-
-
-function agregarAlCarrito(id){
-    let producto = estufas.find(estufas => estufas.id === id)
-    carritoDeCompras.push(producto);
-    const guardarProducto = JSON.stringify(producto);   
-    mostrarCarrito(producto);
-    localStorage.setItem("producto", guardarProducto)    
+            if(yaExiste){
+                yaExiste.cantidad = yaExiste.cantidad + 1
+                document.getElementById(`cantidad${yaExiste.id}`).innerHTML = `<p id="cantidad${yaExiste.id}">cantidad: ${yaExiste.cantidad}</p>`
+                actualizarCarrito() 
+            }else{
+                let producto = estufas.find(estufas => estufas.id === id)
+                producto.cantidad = 1 
+                carritoDeCompras.push(producto);
+                actualizarCarrito();   
+                mostrarCarrito(producto);
+            }              
+            
+        } 
+           
 }
 
+renderizarDom()
 
 function mostrarCarrito(producto){
     let carrito = document.createElement("div");
@@ -108,15 +77,69 @@ function mostrarCarrito(producto){
                                 <h3> Producto: ${producto.nombre.toUpperCase()} </h3>
                                 <p> Calorías: ${producto.calorias} </p>
                                 <b> Precio: $ ${producto.precio} </b>
-                                <a href="html/carrito.html"><button id= "boton${producto.id}"><i class="fa-solid fa-cart-shopping"></i></button></a>
+                                <p id="cantidad${producto.id}">cantidad: ${producto.cantidad}</p>
+                                <button class="botonTacho" id= "eliminar${producto.id}"><i class="fa-solid fa-trash"></i></button>
                             </div>
                         </div>`
     contenedorSeleccion.appendChild(carrito);
+
+    let botonEliminar = document.getElementById(`eliminar${producto.id}`)
+        botonEliminar.addEventListener('click',()=>{
+            if(producto.cantidad > 0){
+            producto.cantidad = producto.cantidad - 1 
+            document.getElementById(`cantidad${producto.id}`).innerHTML = `<p id="cantidad${producto.id}">cantidad: ${producto.cantidad}</p>`
+            actualizarCarrito()
+            }else{
+                actualizarCarrito()
+        }       
+    })
+
+    botonCarrito.addEventListener("click", ()=>{
+        const guardarProducto = JSON.stringify(producto);   
+        localStorage.setItem(producto.id, guardarProducto)  
+        const productoCarrito = JSON.parse(localStorage.getItem(producto.id))
+        listaProductos.innerHTML = ""
+        contenedorSeleccion.innerHTML = ""
+        contenedorProducto.innerHTML = "" 
+        comprarCarrito(productoCarrito)
+        document.getElementById("botonCompra").style.display = "block"
+        document.getElementById("botonCarrito").style.display = "none"
+        Swal.fire({
+            position: 'top-end',
+            icon: 'success',
+            title: 'Tu compra se completa en Marketplace',
+            showConfirmButton: false,
+            timer: 1500
+            })
+        
+    })
+
 }
 
 
-function limpiarLista() {
-    contenedorProducto.innerHTML = "";
+function actualizarCarrito() {
+    contadorCarrito.innerText = carritoDeCompras.reduce((acc,el)=> acc + el.cantidad, 0)
+    precioTotal.innerText = carritoDeCompras.reduce((acc,el)=> acc + (el.precio * el.cantidad) , 0)          
 }
-*/
+
+function comprarCarrito(productoCarrito){
+    let {id, nombre, calorias, precio, img, cantidad} = productoCarrito
+    
+    let comprar = document.createElement("div");
+    comprar.innerHTML = `<div class="card" id="cardCompra" style="width: 18rem;">
+                            <div class="card-body"> 
+                                <h3> Producto: ${nombre.toUpperCase()} </h3>
+                                <p> Calorías: ${calorias} </p>
+                                <p> Cantidad: ${cantidad} </p>
+                                <b> Precio: $ ${precio} </b>
+                            </div>
+                        </div>`
+                        
+    contenedorCarrito.appendChild(comprar);
+
+}
+
+
+
+
 

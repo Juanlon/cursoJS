@@ -9,15 +9,17 @@
     display: block;
 }
 
-select {
-    width: 200px;
-    text-align: right;
-}
-
-.seleccion {
-    margin-top: 150px;
+.lema {
+    margin-top: 170px;
     text-align: right; 
     display: block;
+}
+
+.lema p {
+    font-style: italic;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 20px;
+    margin: 0px 5px;
 }
 
 .header {
@@ -39,38 +41,69 @@ select {
 
 h1 {
     text-align: center;
+    color: black;
     padding: 10px;
-    background-color: rgb(190, 0, 0); 
+    background-color: rgb(190, 0, 0);
+    box-shadow: 0px 5px 4px 3px rgba(0, 0, 0, 0.3); 
+}
+
+.contenedorCompra {
+    box-shadow: 0px 5px 4px 3px rgba(0, 0, 0, 0.3);
 }
 
 .contenedorCarrito {
     margin: 10px;
+    padding: 5px;
     display: flex;
-    flex-direction: row;
-    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+#botonCompra {
+    display: none;
+    border: none;
+    margin: 20px;
+}
+
+.finalizarCompra i {
+    color: black;
+    font-size: 40px;
+}
+
+.finalizarCompra i:hover {
+    color: red;
+    font-size: 50px;
+    transition: 0.5s; 
 }
 
 #cardCarrito {
     width: 600px;
-    height: 200px;
+    height: 240px;
+    margin: 5px 14px;
+    box-shadow: 0px 5px 4px 3px rgba(0, 0, 0, 0.6);
 }
 
-
-footer button {
-    margin: 20px;
-    width: 50px;
-    height: 50px;
+.botonTacho {
+    border: none;
+    font-size: 18px;
 }
 
-footer {
+.botonTacho:hover {
+    color:rgb(190, 0, 0); 
+}
+
+#cardCompra {
+    width: 600px;
+    height: 240px;
+    margin: 5px 0px;
+    box-shadow: 0px 5px 4px 3px rgba(0, 0, 0, 0.6);
+}
+
+.boton {
     display: block;
     text-align: center;
-    background-color: rgb(167, 39, 0);  
-}
-
-.contenedorSeleccion a {
-    display: block;
-    text-align: center;
+    background-color: rgb(230, 226, 208);
 }
 
 .precioProducto {
@@ -83,6 +116,24 @@ footer {
     height: 80px;
     font-size: 30px;
     border: none;
+    background: transparent;
+}
+
+#botonCarrito:hover {
+    font-size: 40px;
+    transition: 0.5s; 
+}
+
+.boton i {
+    background: transparent;
+}  
+
+#contadorCarrito {
+    background: transparent;
+}
+
+.contenedorProducto {
+    box-shadow: 0px 5px 4px 3px rgba(0, 0, 0, 0.3);
 }
 
 .contenedorSeleccion {
@@ -91,7 +142,56 @@ footer {
     flex-direction: column;
 }
 
+.precioProducto {
+    background-color: rgb(252, 175, 103);
+}
+
+#precioTotal {
+    background-color: rgb(252, 175, 103);
+    font-weight: bolder;
+}
+
 .card {
     width: 250px;
-    height: 550px;  
+    height: 550px;
+    margin: 0px 0px 5px 0px;
+    border: 2px;
+    box-shadow: 0px 5px 5px 1px rgba(0, 0, 0, 0.60);  
+}
+
+.card:hover {
+    color:rgb(77, 77, 77)
+}
+
+.botonSeleccion {
+    border: none;
+    font-size: 18px;
+}
+
+.botonSeleccion:hover {
+    color:rgb(190, 0, 0); 
+}
+
+footer button {
+    border: none;
+    background-color: rgb(190, 0, 0); 
+}
+
+footer i {
+    font-size: 30px;
+    background-color: rgb(190, 0, 0); 
+    padding: 10px;
+    color: black;
+}
+
+footer {
+    display: block;
+    text-align: center;
+    background-color: rgb(190, 0, 0);
+    box-shadow: 0px 5px 4px 3px rgba(0, 0, 0, 0.3);  
+}
+
+h5 {
+    background-color: rgb(190, 0, 0); 
+    padding: 10px;
 }
